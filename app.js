@@ -29,6 +29,15 @@ UI.prototype.addMovieToList = function (movie) {
   //-11 Append
   list.appendChild(row);
 }
+//-15 Show alert
+UI.prototype.showAlert = function(message, className){
+  // we have to construct the element 
+  //-16 create a div
+  const div = document.createElement('div');
+
+}
+
+
 //-13 Clear fields prototype
 UI.prototype.clearFields = function () {
   document.getElementById('title').value = '';
@@ -54,15 +63,16 @@ document.getElementById('movie-form').addEventListener('submit', function (e) {
 
   //-14 form validation
   if(title === ''|| director === '', imdb === ''){
-    alert('mooo');
+  UI.showAlert('please fill in all fields', '.error');
   } else {
-
-    
-  }
 
   //-6 Add movie to list 
   ui.addMovieToList(movie);
   //-12 Clear the field after adding a movie
   ui.clearFields();
+
+
+  }
+// we put step 6 and 12 to validation section
   e.preventDefault();
 }); 
