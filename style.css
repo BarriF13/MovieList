@@ -15,9 +15,9 @@
   body{
     background: url(img/cinema.jpg) no-repeat rgb(22, 19, 40);
     background-size: cover;
-    height: 80vh;
   }
   .container {
+ 
     background-color: rgb(236, 192, 192);
     padding: 20px;
     border-radius: 5px;
