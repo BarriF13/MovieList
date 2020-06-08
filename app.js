@@ -30,11 +30,24 @@ UI.prototype.addMovieToList = function (movie) {
   list.appendChild(row);
 }
 //-15 Show alert
-UI.prototype.showAlert = function(message, className){
+UI.prototype.showAlert = function (message, className) {
   // we have to construct the element 
   //-16 create a div
   const div = document.createElement('div');
-
+  //-16 Add classes
+  div.className = `alert ${className}`;
+  //-16 Add text 
+  div.appendChild(document.createTextNode(message));
+  //-16 Get parent
+  const container = document.querySelector('.container');
+  // -16 Get form
+  const form = document.querySelector('#movie-form');
+  //-16 Insert alert
+  container.insertBefore(div, form);
+  //-16 Timeout after secs
+  setTimeout(function () {
+    document.querySelector('.alert').remove();
+  }, 2000);
 }
 
 
@@ -62,17 +75,21 @@ document.getElementById('movie-form').addEventListener('submit', function (e) {
   const ui = new UI();
 
   //-14 form validation
-  if(title === ''|| director === '', imdb === ''){
-  UI.showAlert('please fill in all fields', '.error');
+  if (title === '' || director === '', imdb === '') {
+    ui.showAlert('Please fill in all fields.', 'error');
   } else {
 
-  //-6 Add movie to list 
-  ui.addMovieToList(movie);
-  //-12 Clear the field after adding a movie
-  ui.clearFields();
+    //-6 Add movie to list 
+    ui.addMovieToList(movie);
+    //-17 Show success
+    ui.showAlert('Movie added!', 'success');
+
+
+    //-12 Clear the field after adding a movie
+    ui.clearFields();
 
 
   }
-// we put step 6 and 12 to validation section
+  // we put step 6 and 12 to validation section
   e.preventDefault();
 }); 
